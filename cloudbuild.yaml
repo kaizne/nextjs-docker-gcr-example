@@ -1,0 +1,13 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-west2-docker.pkg.dev/esoteric-source-382201/nextjs-docker-gcr-example-docker-repo/nextjs-docker-gcr-image:tag1', '.']
+# Push the image to Artifact Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-west2-docker.pkg.dev/esoteric-source-382201/nextjs-docker-gcr-example-docker-repo/nextjs-docker-gcr-image:tag1']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'nextjs-docker-gcr-image', '--image', 'us-west2-docker.pkg.dev/esoteric-source-382201/nextjs-docker-gcr-example-docker-repo/nextjs-docker-gcr-image:tag1', '--region', 'us-west2']
+images:
+- 'us-west2-docker.pkg.dev/esoteric-source-382201/nextjs-docker-gcr-example-docker-repo/nextjs-docker-gcr-image:tag1'
