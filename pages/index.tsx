@@ -17,7 +17,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
-            Hello! I am being deployed again!!!&nbsp;
+            Hello! Continuous Integration!!!&nbsp;
             <code className={styles.code}>pages/index.tsx</code>
           </p>
           <div>
